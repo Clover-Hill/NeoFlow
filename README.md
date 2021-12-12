@@ -58,9 +58,7 @@
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
-<center class="half">
-    <img src="Images/Demo-1.png" height="400px"/><img src="Images/Demo-2.png" height="400px"/><img src="Images/Demo-3.png" height="400px"/><img src="Images/Demo-5.png" height="400px"/>
-</center>
+<img src="Images/Demo-1.png" height="400px"/> <img src="Images/Demo-2.png" height="400px"/> <img src="Images/Demo-3.png" height="400px"/> <img src="Images/Demo-5.png" height="400px"/>
 
 <br/>
 
