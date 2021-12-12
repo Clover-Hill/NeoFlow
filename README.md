@@ -29,8 +29,7 @@
     <br />
     <a href="https://github.com/Clover-Hill/NeoFlow"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    <a href="https://github.com/Clover-Hill/NeoFlow">View Demo</a>
+    <a href="#about-the-project">View Demo</a>
     ·
     <a href="https://github.com/Clover-Hill/NeoFlow/issues">Report Bug</a>
     ·
@@ -59,7 +58,10 @@
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<img src="Images/Demo-1.png" height="400px"/>
+<img src="Images/Demo-2.png" height="400px"/>
+<img src="Images/Demo-3.png" height="400px"/>
+<img src="Images/Demo-5.png" height="400px"/>
 
 Neo Flow is a modern GTD Android App to improve your workflow.
 <br/>
@@ -88,7 +90,7 @@ The motivation for this project is that although there already are many GTD apps
 
 ## Download APP
 
-[![Neo Flow](https://img.shields.io/badge/Neo_Flow-APK-silver.svg?style=for-the-badge&logo=android)](https://github.com/Clover-Hill/NeoFlow/releases/tag/release)
+[![Neo Flow](https://img.shields.io/badge/Neo_Flow-APK-silver.svg?style=for-the-badge&logo=android)](https://github.com/Clover-Hill/NeoFlow/releases/tag/v1.0.0)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
