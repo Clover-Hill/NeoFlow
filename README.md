@@ -58,15 +58,9 @@
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
-<center class="half">
-    <img src="Images/Demo-1.png" height="400px"/><img src="Images/Demo-2.png" height="400px"/><img src="Images/Demo-3.png" height="400px"/><img src="Images/Demo-5.png" height="400px"/>
-</center>
-
-<br/>
+<img src="Images/Demo-1.png" width="200px"/> <img src="Images/Demo-2.png" width="200px"/> <img src="Images/Demo-3.png" width="200px"/> <img src="Images/Demo-5.png" width="200px"/>
 
 Neo Flow is a modern GTD Android App to improve your workflow.
-
-<br/>
 
 &ensp;&ensp;*The motivation for this project is that although there already are many GTD apps out there, no app has successfully integrated all features you need during your workflow into only one app. For example, my workflow from a top to bottom sequence: different projects' management, making plan for one day/week/month, pomodoro for every working session, as well as some other featurs like habit tracking and to-do item memo.*
 <br/>
