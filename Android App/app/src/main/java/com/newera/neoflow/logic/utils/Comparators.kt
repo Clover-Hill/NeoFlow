@@ -4,6 +4,16 @@ import androidx.recyclerview.widget.DiffUtil
 import com.newera.neoflow.data.models.Task
 import com.newera.neoflow.data.models.TodoItem
 
+/**
+ * Comparators
+ * Set call backs for ListAdapters to use DiffUtil to get the difference between two lists
+ * This can hugely improve the efficiency of RecyclerView and make it easier to delete items
+ *
+ * 1. TODO_COMPARATOR is for TodoAdapter
+ * 2. SUBTASK_COMPARATOR is for SubTaskAdapter
+ *
+ * @constructor Create empty Comparators
+ */
 object Comparators
 {
 

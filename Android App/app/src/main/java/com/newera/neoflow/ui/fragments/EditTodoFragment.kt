@@ -23,24 +23,56 @@ import com.newera.neoflow.ui.adapters.EditSubTaskAdapter
 import com.newera.neoflow.ui.adapters.OnTaskChanged
 import com.newera.neoflow.ui.viewmodels.EditTodoViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import java.util.*
 import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class EditTodoFragment : Fragment(R.layout.fragment_edit_todo), OnTaskChanged {
+class EditTodoFragment : Fragment(R.layout.fragment_edit_todo), OnTaskChanged
+{
 
+    /**
+     * _binding mutable
+     */
     private var _binding: FragmentEditTodoBinding? = null
+    /**
+     * binding immutable
+     */
     private val binding get() = _binding!!
+
+    /**
+     * Edit todo view model
+     */
     private val editTodoViewModel by viewModels<EditTodoViewModel>()
+
+    /**
+     * Data transferred from AllTodoFragment (TodoItem)
+     */
     private val editTodoFragmentArgs: EditTodoFragmentArgs by navArgs()
+
+    /**
+     * Edit sub task adapter
+     */
     private lateinit var editSubTaskAdapter: EditSubTaskAdapter
 
+    /**
+     * Current Edited todoItem
+     */
     private lateinit var todoItem: TodoItem
+
+    /**
+     * Current Sub-Task list
+     */
     private val tasks: MutableList<Task> = ArrayList()
+
+    /**
+     * Alarm calendar
+     */
     private val alarmCalendar = Calendar.getInstance()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
+        // Initialization
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentEditTodoBinding.bind(view)
         setUpTasksRecyclerView()
@@ -53,6 +85,7 @@ class EditTodoFragment : Fragment(R.layout.fragment_edit_todo), OnTaskChanged {
         val mainActivity = activity as AppCompatActivity
         mainActivity.setSupportActionBar(binding.addTodoToolbar)
 
+        // Update todoItem when it's been changed
         editTodoViewModel.getTodoById(todoItem.id).asLiveData().observe(viewLifecycleOwner)
         {
             todoItem = it
@@ -60,11 +93,13 @@ class EditTodoFragment : Fragment(R.layout.fragment_edit_todo), OnTaskChanged {
             tasks.addAll(it.tasks)
         }
 
-        editTodoViewModel.getTodoList(todoItem.id).observe(viewLifecycleOwner)
+        // Update editSubTaskAdapter when sub-task list has been changed
+        editTodoViewModel.getTodoList(todoItem.id).asLiveData().observe(viewLifecycleOwner)
         {
             editSubTaskAdapter.submitList(it)
         }
 
+        // Set listeners for UI elements
         binding.apply {
 
             todoDateTextview.text = Util.formatDate(dueDate = todoItem.dueDate)
@@ -86,7 +121,6 @@ class EditTodoFragment : Fragment(R.layout.fragment_edit_todo), OnTaskChanged {
             }
 
             saveTodoButton.setOnClickListener {
-                // Nothing Changed because updating item happen in realtime
                 updateTodoTasks()
                 findNavController().navigateUp()
             }
@@ -98,13 +132,16 @@ class EditTodoFragment : Fragment(R.layout.fragment_edit_todo), OnTaskChanged {
             todoTitle.setText(todoItem.title)
         }
 
-        // Back Button Pressed
+        // When Back Button Pressed, makes sure that sub-tasks get updated
         requireActivity()
             .onBackPressedDispatcher
-            .addCallback(requireActivity(), object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
+            .addCallback(requireActivity(), object : OnBackPressedCallback(true)
+            {
+                override fun handleOnBackPressed()
+                {
                     updateTodoTasks()
-                    if (isEnabled) {
+                    if (isEnabled)
+                    {
                         isEnabled = false
                         activity?.onBackPressed()
                     }
@@ -114,6 +151,9 @@ class EditTodoFragment : Fragment(R.layout.fragment_edit_todo), OnTaskChanged {
 
     }
 
+    /**
+     * Set up sub-task recycler view
+     */
     private fun setUpTasksRecyclerView()
     {
         editSubTaskAdapter = EditSubTaskAdapter(this)
@@ -123,35 +163,35 @@ class EditTodoFragment : Fragment(R.layout.fragment_edit_todo), OnTaskChanged {
         }
     }
 
-    override fun onSubTaskTitleChanged(position: Int, newTitle: String) {
-        tasks[position].title = newTitle
-    }
-
-    override fun updateSubTaskCompletion(position: Int, isCompleted: Boolean) {
-        tasks[position].isCompleted = isCompleted
-        editTodoViewModel.updateTodoTasks(todoItem.id, tasks)
-    }
-
-    override fun removeSubTask(position: Int) {
-        tasks.removeAt(position)
-        editTodoViewModel.updateTodoTasks(todoItem.id, tasks)
-    }
-
-    private fun updateTodoTasks() {
+    /**
+     * Update sub-tasks and eliminate empty tasks
+     */
+    private fun updateTodoTasks()
+    {
         var index = 0
         val subTasks: MutableList<Task> = ArrayList()
         subTasks.addAll(tasks)
+        // Check if there are any empty tasks
         tasks.forEach { task ->
-            if (task.title == "") {
+            if (task.title == "")
+            {
                 subTasks.remove(task)
-            } else {
+            } else
+            {
                 task.id = index++
             }
         }
         editTodoViewModel.updateTodoTasks(todoItem.id, subTasks)
     }
 
-    private fun setDueDate() {
+    /**
+     * Set due date
+     * First create a listener when date has been set
+     * Then send it to showDatePicker
+     *
+     */
+    private fun setDueDate()
+    {
         val datePickerListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
             val newDate = Calendar.getInstance()
             newDate.set(year, month, day)
@@ -165,13 +205,19 @@ class EditTodoFragment : Fragment(R.layout.fragment_edit_todo), OnTaskChanged {
             binding.todoDateTextview.text = Util.formatDate(dueDate = todoItem.dueDate)
             editTodoViewModel.updateTodoDueDate(todoItem.id, todoItem.dueDate)
         }
+
         Util.showDatePicker(
             todoItem = todoItem, context = requireContext(),
             datePickerListener = datePickerListener
         )
     }
 
-    private fun setRemainderTime() {
+    /**
+     * Set remainder time
+     *
+     */
+    private fun setRemainderTime()
+    {
         val timePickerListener = TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
             alarmCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
             alarmCalendar.set(Calendar.MINUTE, minute)
@@ -186,22 +232,67 @@ class EditTodoFragment : Fragment(R.layout.fragment_edit_todo), OnTaskChanged {
             )
             setAlarm()
         }
+
         Util.showTimePicker(
             todoItem = todoItem, context = requireContext(),
             timePickerListener = timePickerListener
         )
     }
 
-    private fun setAlarm() {
+    /**
+     * Set alarm
+     *
+     */
+    private fun setAlarm()
+    {
         Util.setAlarm(
             todoItem = todoItem, context = requireContext(),
             alarmCalendar = alarmCalendar, view = binding.root
         )
     }
 
-    override fun onDestroyView() {
+    /**
+     * On destroy view
+     * Remember to set _binding to null so trying to call binding after the view has been destroyed will throw exception
+     *
+     */
+    override fun onDestroyView()
+    {
         super.onDestroyView()
         _binding = null
     }
 
+    /**
+     * On sub task title changed
+     *
+     * @param position
+     * @param newTitle
+     */
+    override fun onSubTaskTitleChanged(position: Int, newTitle: String)
+    {
+        tasks[position].title = newTitle
+    }
+
+    /**
+     * Update sub task completion
+     *
+     * @param position
+     * @param isCompleted
+     */
+    override fun updateSubTaskCompletion(position: Int, isCompleted: Boolean)
+    {
+        tasks[position].isCompleted = isCompleted
+        editTodoViewModel.updateTodoTasks(todoItem.id, tasks)
+    }
+
+    /**
+     * Remove sub task
+     *
+     * @param position
+     */
+    override fun removeSubTask(position: Int)
+    {
+        tasks.removeAt(position)
+        editTodoViewModel.updateTodoTasks(todoItem.id, tasks)
+    }
 }

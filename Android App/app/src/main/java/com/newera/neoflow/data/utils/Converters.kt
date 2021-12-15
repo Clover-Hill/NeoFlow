@@ -16,7 +16,7 @@ class Converters
     /**
      * List<Task> to String
      *
-     * @param value,List<Task>
+     * @param value : List<Task>
      * @return String
      */
     @TypeConverter
@@ -25,7 +25,7 @@ class Converters
     /**
      * String to List<Task>
      *
-     * @param value,String
+     * @param value : String
      * @return List<Task>
      */
     @TypeConverter

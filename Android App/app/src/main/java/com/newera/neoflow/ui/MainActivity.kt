@@ -6,6 +6,13 @@ import com.newera.neoflow.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+/**
+ * Main activity
+ * Just start the view here
+ * Implementation in Fragments
+ *
+ * @constructor Create empty Main activity
+ */
 class MainActivity : AppCompatActivity()
 {
     override fun onCreate(savedInstanceState: Bundle?) {

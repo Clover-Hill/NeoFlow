@@ -14,6 +14,8 @@
             android:id="@+id/action_allTodoFragment_to_addEditTodoFragment"
             app:destination="@id/addEditTodoFragment" />
     </fragment>
+
+<!--Use navigation.argument to realize data transfer-->
     <fragment
         android:id="@+id/addEditTodoFragment"
         android:name="com.newera.neoflow.ui.fragments.EditTodoFragment"

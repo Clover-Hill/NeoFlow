@@ -5,6 +5,9 @@ plugins {
     id 'kotlin-android-extensions'
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
+
+    // Add Kdoc documentation
+    id 'org.jetbrains.dokka'
 }
 
 android {
@@ -36,6 +39,19 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+}
+
+// Configure dokka
+// Documentation located at documentation folder of root folder
+// Use ./gradlew dokkaHtml to generate documentation
+tasks.dokkaHtml.configure {
+    outputDirectory.set(file("../../documentation/html"))
+}
+
+tasks.withType(dokkaHtml.getClass()).configureEach {
+    pluginsMapConfiguration.set(
+            ["org.jetbrains.dokka.base.DokkaBase": """{ "separateInheritedMembers": true}"""]
+    )
 }
 
 dependencies {

@@ -35,10 +35,10 @@ data class TodoItem(
 ): Parcelable
 
 /**
- * Filter for TodoItems
- * Used in AllToDoFragment
+ * Filter for TodoItems. Used for stateflow implementation.
  */
-enum class Filter {
+enum class Filter
+{
     ALL,
     COMPLETED,
     IMPORTANT

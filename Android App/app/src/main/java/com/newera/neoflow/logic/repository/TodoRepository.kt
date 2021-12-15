@@ -7,9 +7,8 @@ import javax.inject.Inject
 
 /**
  * Todo repository
- * Interact with the database using data access objects
- * Available for dependency injection
- * Contain all methods for AllTodoViewModel as well as EditTodoViewModel
+ * Interact with the database using data access objects, provide mothods for outer functions
+ * Provide dependency injection
  *
  * @property todoDao
  * @constructor Create empty Todo repository
@@ -41,8 +40,18 @@ class TodoRepository @Inject constructor(private val todoDao: TodoDao)
 
     suspend fun removeTodo(todoItem: TodoItem) = todoDao.removeTodo(todoItem)
 
+    /**
+     * Get todoItem by Id
+     * Caution: Here the method return Flow<TodoItem>
+     *
+     * @param todoItemId
+     */
     fun getTodoById(todoItemId: Int) = todoDao.getTodoById(todoItemId)
 
+    /**
+     * Get all todoItems
+     * Caution: Here the method return Flow<List<TodoItem>>
+     */
     fun getAllTodos() = todoDao.getAllTodos()
 
 }

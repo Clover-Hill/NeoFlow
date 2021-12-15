@@ -19,4 +19,5 @@
     <string name="edit_task">Edit Task</string>
     <string name="todo_channel_description">Notify Todo Item</string>
     <string name="todo_channel_name">Todo Item Alarm Channel</string>
+    <string name="todo_channel_id">todo_channel</string>
 </resources>

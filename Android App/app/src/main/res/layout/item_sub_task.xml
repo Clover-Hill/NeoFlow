@@ -15,7 +15,7 @@
         android:layout_marginEnd="10dp"
         android:minHeight="0dp"
         android:minWidth="0dp"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
         android:textColor="@color/text_color"
         android:textSize="16sp"
         android:buttonTint="@color/icon_color"
@@ -23,7 +23,8 @@
         app:layout_constraintEnd_toStartOf="@+id/task_remove"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Todo" />
+        tools:text="Todo"
+        tools:ignore="RtlSymmetry" />
 
     <ImageView
         android:id="@+id/task_remove"

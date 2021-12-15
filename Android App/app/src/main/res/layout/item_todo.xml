@@ -52,26 +52,26 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
-            android:drawableLeft="@drawable/ic_calendar"
             android:drawablePadding="10dp"
             android:textColor="@color/text_color"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/todo_title"
-            tools:text="12 October 2021" />
+            tools:text="12 October 2021"
+            app:drawableLeftCompat="@drawable/ic_calendar" />
 
         <TextView
             android:id="@+id/todo_time_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:drawableLeft="@drawable/ic_clock"
             android:drawablePadding="10dp"
             android:textColor="@color/text_color"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/todo_date_textview"
-            tools:text="10 : 00" />
+            tools:text="10 : 00"
+            app:drawableLeftCompat="@drawable/ic_clock" />
 
         <CheckBox
             android:id="@+id/todo_important_checkbox"

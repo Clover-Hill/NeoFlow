@@ -27,7 +27,7 @@
 <p align="center">
     A modern GTD Android App to improve your workflow
     <br />
-    <a href="https://github.com/Clover-Hill/NeoFlow"><strong>Explore the docs »</strong></a>
+    <a href="documentation/html/index.html"><strong>Explore the docs »</strong></a>
     <br />
     <a href="#about-the-project">View Demo</a>
     ·
@@ -124,7 +124,7 @@ If you have a suggestion that would make this better, please fork the repo and c
 Don't forget to give the project a star! Thanks again!
 
 Before you start , I highly recommend you to check the development documentation first to grasp a general understanding of the structure of this app.
-    <a href="https://github.com/Clover-Hill/NeoFlow"><strong>Explore the docs »</strong></a>
+    <a href="documentation/html/index.html"><strong>Explore the docs »</strong></a>
 
 How to make a pull request:
 1. Fork the Project

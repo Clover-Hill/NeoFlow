@@ -4,11 +4,11 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 /**
- * Sub-Task for Todo Item
+ * Data model for "sub-task" in Todo-Item
  *
  * @property id
  * @property title
- * @property isCompleted
+ * @property isCompleted : whether the sub-task has completed
  * @constructor Create empty Task
  */
 @Parcelize

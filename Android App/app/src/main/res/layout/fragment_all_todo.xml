@@ -80,6 +80,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+<!--Used to enable close bottom sheet when clicking other places-->
     <View
         android:id="@+id/screen"
         android:layout_width="match_parent"

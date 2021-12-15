@@ -7,6 +7,11 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @Dao
+/**
+ * Data access objects
+ * Define all logic to interact with TodoDatabase
+ * @constructor Create empty Todo dao
+ */
 interface TodoDao
 {
 
